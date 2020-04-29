@@ -39,13 +39,31 @@ def upload():
         # Get file data and save to your uploads folder
         up=form.upload.data
         filename = secure_filename(up.filename)
-        up.save(os.path.join(app.config['UPLOAD_FOLDER'], filename
-        ))
+        up.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         flash('File Saved', 'success')
         return redirect(url_for('home'))
 
     return render_template('upload.html',form=form)
 
+def get_uploaded_images():
+    rootdir = os.getcwd()
+    images=[]
+    
+    for subdir, dirs, files in os.walk(rootdir + 'app/static/uploads'):
+        for file in files:
+            path = subdir + os.sep + file
+            if path.endswith(".png") or path.endswith(".jpg"):
+                images.append(file)
+    return images
+
+#@app.route('/files')       
+#def file():
+   # if not session.get('logged_in'):
+     #   abort(401)
+  #  else:
+   #     images=get_uploaded_images()
+        
+  #return render_template('files.html', images=images)
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():

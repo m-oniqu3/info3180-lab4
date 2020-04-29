@@ -13,4 +13,8 @@ SECRET_KEY = 'Sup3r$3cretkey'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
+#UPLOAD_FOLDER = "./app/static/uploads"
+#app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+csrf.init_app(app)
 from app import views
