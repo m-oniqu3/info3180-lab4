@@ -10,7 +10,7 @@
   {{ form.csrf_token }}
   {# Add the file upload field as you learnt for Flask-WTF #}
   {{form.upload.label}}
-  {{form.upload}}
+  {{form.upload(class='grid-box')}}
 
   <button type="submit" name="submit" class="btn btn-primary">Upload file</button>
 </form>

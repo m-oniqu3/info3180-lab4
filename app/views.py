@@ -45,6 +45,8 @@ def upload():
 
     return render_template('upload.html',form=form)
 
+
+
 def get_uploaded_images():
     rootdir = os.getcwd()
     images=[]
@@ -55,15 +57,14 @@ def get_uploaded_images():
             if path.endswith(".png") or path.endswith(".jpg"):
                 images.append(file)
     return images
-
-#@app.route('/files')       
-#def file():
-   # if not session.get('logged_in'):
-     #   abort(401)
-  #  else:
-   #     images=get_uploaded_images()
+    
+@app.route('/files')       
+def file():
+    if not session.get('logged_in'):
+        abort(401)
+    images=get_uploaded_images()
         
-  #return render_template('files.html', images=images)
+    return render_template('files.html', images=images)
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
